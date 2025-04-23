@@ -181,3 +181,27 @@ body {
     margin-top: 10px;
   }
 }
+.intro-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}
