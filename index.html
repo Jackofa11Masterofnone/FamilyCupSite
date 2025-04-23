@@ -8,90 +8,155 @@
   <style>
     body {
       margin: 0;
-      background-color: #fff;
       font-family: 'Garet', sans-serif;
+      background-color: #fff;
     }
 
-    .header-image {
-      position: relative;
-      width: 100%;
-      height: auto;
+    .nav-container {
+      background-color: #929471;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo h1 {
+      font-family: 'Hatton', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      margin: 0;
     }
 
     .nav-links {
-      position: absolute;
-      top: 25%;
-      right: 5%;
       display: flex;
       gap: 20px;
-      transform: translateY(-50%);
     }
 
     .nav-links a {
-      color: white;
+      color: #fff;
       text-decoration: none;
       font-size: 1rem;
-      font-weight: bold;
     }
 
-    .desktop-main {
-      display: block;
-      width: 100%;
-    }
-
-    .mobile-main {
+    .hamburger {
       display: none;
+      font-size: 1.8rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #929471;
+    }
+
+    .mobile-menu a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      border-top: 1px solid #888;
+    }
+
+    .hero-image {
       width: 100%;
+      display: block;
+    }
+
+    .footer {
+      background-color: #929471;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .footer-links {
+      margin-top: 10px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 0.9rem;
     }
 
     @media (max-width: 768px) {
-      .desktop-main {
+      .nav-links {
         display: none;
       }
-
-      .mobile-main {
+      .hamburger {
+        display: block;
+      }
+      .mobile-menu.show {
+        display: flex;
+      }
+      .desktop-hero {
+        display: none;
+      }
+      .mobile-hero {
         display: block;
       }
     }
 
-    .clickable-header {
-      position: relative;
+    @media (min-width: 769px) {
+      .desktop-hero {
+        display: block;
+      }
+      .mobile-hero {
+        display: none;
+      }
     }
-
-    .clickable-header a {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1rem;
-      color: white;
-      text-decoration: none;
-    }
-
-    /* Adjust positions for the header text links */
-    .home-link { left: 60%; }
-    .about-link { left: 68%; }
-    .shop-link { left: 75%; }
-    .schedule-link { left: 82%; }
-    .menu-link { left: 90%; }
-    .book-link { left: 98%; }
   </style>
 </head>
 <body>
 
-  <!-- Header Image with clickable zones (desktop only) -->
-  <div class="clickable-header">
-    <img src="B523A15E-D874-410A-A403-7241AD2094C2.jpeg" alt="Header" class="header-image" />
-    <a href="index.html" class="home-link">Home</a>
-    <a href="about.html" class="about-link">About</a>
-    <a href="shop.html" class="shop-link">Shop</a>
-    <a href="schedule.html" class="schedule-link">Schedule</a>
-    <a href="menu.html" class="menu-link">Menu</a>
-    <a href="book.html" class="book-link">Book Us</a>
+  <header class="nav-container">
+    <div class="nav-logo">
+      <h1 class="logo-text">THE FAMILY CUP</h1>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="shop.html">Shop</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="menu.html">Menu</a>
+      <a href="book.html">Book Us</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <div id="mobile-menu" class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="shop.html">Shop</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="menu.html">Menu</a>
+    <a href="book.html">Book Us</a>
   </div>
 
-  <!-- Main screen images -->
-  <img src="4ED42616-C468-478D-84FF-54415C215441.jpeg" alt="Desktop Home Screen" class="desktop-main" />
-  <img src="020375EA-B802-4467-8C5D-3803DA220509.jpeg" alt="Mobile Home Screen" class="mobile-main" />
+  <main>
+    <img src="4ED42616-C468-478D-84FF-54415C215441.jpeg" alt="The Family Cup Home Desktop" class="hero-image desktop-hero" />
+    <img src="020375EA-B802-4467-8C5D-3803DA220509.jpeg" alt="The Family Cup Home Mobile" class="hero-image mobile-hero" />
+  </main>
+
+  <footer class="footer">
+    <div>&copy; 2025 The Family Cup. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="shop.html">Shop</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="menu.html">Menu</a>
+      <a href="book.html">Book</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.toggle("show");
+    }
+  </script>
 
 </body>
 </html>
