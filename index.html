@@ -1,60 +1,97 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Family Cup</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #fff;
+      font-family: 'Garet', sans-serif;
+    }
+
+    .header-image {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+
+    .nav-links {
+      position: absolute;
+      top: 25%;
+      right: 5%;
+      display: flex;
+      gap: 20px;
+      transform: translateY(-50%);
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .desktop-main {
+      display: block;
+      width: 100%;
+    }
+
+    .mobile-main {
+      display: none;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-main {
+        display: none;
+      }
+
+      .mobile-main {
+        display: block;
+      }
+    }
+
+    .clickable-header {
+      position: relative;
+    }
+
+    .clickable-header a {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Adjust positions for the header text links */
+    .home-link { left: 60%; }
+    .about-link { left: 68%; }
+    .shop-link { left: 75%; }
+    .schedule-link { left: 82%; }
+    .menu-link { left: 90%; }
+    .book-link { left: 98%; }
+  </style>
 </head>
 <body>
 
-  <header class="nav-container">
-    <div class="nav-logo">
-      <h1 class="logo-text">THE FAMILY CUP</h1>
-    </div>
-    <nav class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#shop">Shop</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#menu">Menu</a>
-      <a href="#book">Book Us</a>
-    </nav>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-  </header>
-<section class="intro-image desktop-only">
-  <img src="THE FAMILY CU.png" alt="Welcome to The Family Cup" />
-</section>
-
-<section class="intro-image mobile-only">
-  <img src="THE FAMILY CU (1080 X 1920 PX).png" alt="Welcome to The Family Cup Mobile" />
-</section>
-  <div id="mobile-menu" class="mobile-menu">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#shop">Shop</a>
-    <a href="#schedule">Schedule</a>
-    <a href="#menu">Menu</a>
-    <a href="#book">Book Us</a>
+  <!-- Header Image with clickable zones (desktop only) -->
+  <div class="clickable-header">
+    <img src="B523A15E-D874-410A-A403-7241AD2094C2.jpeg" alt="Header" class="header-image" />
+    <a href="index.html" class="home-link">Home</a>
+    <a href="about.html" class="about-link">About</a>
+    <a href="shop.html" class="shop-link">Shop</a>
+    <a href="schedule.html" class="schedule-link">Schedule</a>
+    <a href="menu.html" class="menu-link">Menu</a>
+    <a href="book.html" class="book-link">Book Us</a>
   </div>
 
-  <section class="hero">
-    <h2>Kindness. Family. Community.</h2>
-    <p>Serving more than coffee—pouring love into every cup.</p>
-    <a href="#shop" class="cta-button">Shop Our Coffee</a>
-  </section>
+  <!-- Main screen images -->
+  <img src="4ED42616-C468-478D-84FF-54415C215441.jpeg" alt="Desktop Home Screen" class="desktop-main" />
+  <img src="020375EA-B802-4467-8C5D-3803DA220509.jpeg" alt="Mobile Home Screen" class="mobile-main" />
 
-  <script src="script.js"></script>
 </body>
 </html>
-<footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-links">
-      <a href="#home">Home</a>
-      <a href="#shop">Shop</a>
-      <a href="#schedule">Events</a>
-      <a href="#menu">Menu</a>
-      <a href="#book">Book Us</a>
-    </div>
-  </div>
-</footer>
