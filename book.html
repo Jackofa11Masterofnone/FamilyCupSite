@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Us | The Family Cup</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Garet', sans-serif;
+    }
+    .book-hero {
+      background-color: #f6f5ee;
+      padding: 50px 20px 30px;
+      text-align: center;
+    }
+    .book-hero h1 {
+      font-family: 'Hatton', serif;
+      font-size: 2.3rem;
+      margin-bottom: 10px;
+    }
+    .book-hero p {
+      font-size: 1rem;
+      color: #555;
+    }
+    .book-cards {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: 1fr;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    @media (min-width: 700px) {
+      .book-cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .book-card {
+      background-color: #929471;
+      color: #fdfcf6;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+    .book-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .book-card p {
+      font-size: 0.95rem;
+    }
+    .form-section {
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: left;
+    }
+    .form-section h2 {
+      font-family: 'Hatton', serif;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .form-section form {
+      display: grid;
+      gap: 20px;
+    }
+    .form-section label {
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: #444;
+    }
+    .form-section input,
+    .form-section textarea {
+      width: 100%;
+      padding: 10px;
+      font-family: 'Garet', sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+    .form-section textarea {
+      resize: vertical;
+      height: 100px;
+    }
+    .form-section button {
+      background-color: #929471;
+      color: #fff;
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Garet', sans-serif;
+    }
+    .form-section button:hover {
+      background-color: #7c875d;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav-container">
+    <div class="nav-logo">
+      <h1 class="logo-text">THE FAMILY CUP</h1>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="schedule.html">Events</a>
+      <a href="menu.html">Menu</a>
+      <a href="book.html">Book Us</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <div id="mobile-menu" class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="schedule.html">Events</a>
+    <a href="menu.html">Menu</a>
+    <a href="book.html">Book Us</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <section class="book-hero">
+    <h1>Book Us</h1>
+    <p>Let us bring the warmth of The Family Cup to your event! Choose the setup that fits your needs best:</p>
+  </section>
+
+  <section class="book-cards">
+    <div class="book-card">
+      <h3>Trailer Bookings</h3>
+      <p>Perfect for festivals, markets, weddings, and large outdoor events. Our full-service coffee trailer comes equipped with everything needed to serve your guests with style.</p>
+    </div>
+    <div class="book-card">
+      <h3>Coffee Bar</h3>
+      <p>An elegant indoor setup for offices, parties, or private venues. We bring our espresso setup and signature drinks to you—simple, stylish, and no trailer required.</p>
+    </div>
+    <div class="book-card">
+      <h3>Catering & Custom Experiences</h3>
+      <p>From cocoa bars and latte service to full event catering and treats, we love working with you to bring your vision to life. If it involves coffee, count us in!</p>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <h2>Submit a Booking Inquiry</h2>
+    <form onsubmit="handleSubmit(event)" action="https://formsubmit.co/info@thefamilycupcoffee.com" method="POST">
+      <label for="name">Name*</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email*</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="company">Company (Optional)</label>
+      <input type="text" id="company" name="company" />
+
+      <label for="eventType">Event Type*</label>
+      <input type="text" id="eventType" name="eventType" required />
+
+      <label for="dateTime">Event Date & Approx. Time*</label>
+      <input type="text" id="dateTime" name="dateTime" required />
+
+      <label for="location">Event Location*</label>
+      <input type="text" id="location" name="location" required />
+
+      <label for="headCount">Estimated Head Count*</label>
+      <input type="number" id="headCount" name="headCount" required />
+
+      <label for="message">Additional Notes</label>
+      <textarea id="message" name="message" placeholder="Let us know anything else you'd like us to know..."></textarea>
+
+      <button type="submit">Submit Inquiry</button>
+    </form><div id="thankYouMessage" style="display:none; text-align:center; padding-top:30px;"><h3>Thank you for reaching out!</h3><p>We look forward to connecting with you and truly appreciate you visiting our page.</p></div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="schedule.html">Events</a>
+        <a href="menu.html">Menu</a>
+        <a href="book.html">Book Us</a>
+      </div>
+    </div>
+    <p class="footer-note">&copy; 2025 The Family Cup. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.toggle("show");
+    }
+  
+    function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('thankYouMessage').style.display = 'block';
+        }
+      }).catch(error => {
+        alert("Oops! Something went wrong. Please try again later.");
+      });
+    }
+    </script>
+
+</body>
+</html>

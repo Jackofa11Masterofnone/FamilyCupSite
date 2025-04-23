@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Where You’ll Find Us | The Family Cup</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Garet', sans-serif;
+    }
+    .schedule-hero {
+      background-color: #f6f5ee;
+      padding: 60px 20px 30px;
+      text-align: center;
+    }
+    .schedule-hero h1 {
+      font-family: 'Hatton', serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .schedule-hero p {
+      font-size: 1rem;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .insta-link {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #929471;
+    }
+    .insta-link a {
+      color: #929471;
+      text-decoration: underline;
+    }
+    .schedule-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      gap: 40px;
+    }
+    .event-list-section {
+      flex: 1;
+      min-width: 300px;
+    }
+    .event-list-card {
+      background-color: #929471;
+      color: #fdfcf6;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .event-list-card h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+    .event-list-card p {
+      font-size: 0.9rem;
+      margin: 5px 0 0;
+    }
+    .highlighted-event {
+      flex: 2;
+      min-width: 300px;
+      background-color: #fdfcf6;
+      border: 1px solid #e1e1e1;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .highlighted-event h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .highlighted-event p {
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+      color: #444;
+    }
+    .map-preview iframe {
+      width: 100%;
+      height: 300px;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: 15px;
+    }
+    .directions-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #929471;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+    .directions-button:hover {
+      background-color: #7c875d;
+    }
+    @media (max-width: 768px) {
+      .schedule-wrapper {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav-container">
+    <div class="nav-logo">
+      <h1 class="logo-text">THE FAMILY CUP</h1>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="schedule.html">Events</a>
+      <a href="menu.html">Menu</a>
+      <a href="book.html">Book Us</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <div id="mobile-menu" class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="schedule.html">Events</a>
+    <a href="menu.html">Menu</a>
+    <a href="book.html">Book Us</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <section class="schedule-hero">
+    <h1>Where You’ll Find Us Next</h1>
+    <p>We rotate locations throughout the month so you can catch us near you soon.</p>
+    <p class="insta-link">Looking for a surprise pop-up? Follow us on <a href="https://www.instagram.com/thefamilycupcoffee" target="_blank">@thefamilycupcoffee</a>.</p>
+  </section>
+
+  <section class="schedule-wrapper">
+    <div class="event-list-section">
+      <div class="event-list-card">
+        <h3>May 3</h3>
+        <p>Lightfoot Farm Market – Millington, TN</p>
+      </div>
+      <div class="event-list-card">
+        <h3>May 8</h3>
+        <p>Baptist Corporate – Memphis, TN</p>
+      </div>
+      <div class="event-list-card">
+        <h3>May 18</h3>
+        <p>Sea Isle Park – Memphis, TN</p>
+      </div>
+      <div class="event-list-card">
+        <h3>May 25</h3>
+        <p>Cypress Home & Garden Market – Roseville, TN</p>
+      </div>
+      <div class="event-list-card">
+        <h3>May 28</h3>
+        <p>Touch a Truck – Collierville Library</p>
+      </div>
+    </div>
+
+    <div class="highlighted-event">
+      <h2>Next Event: Lightfoot Farm Market</h2>
+      <p><strong>Address:</strong> 7422 Ward Rd, Millington, TN</p>
+      <div class="map-preview">
+        <iframe
+          src="https://www.google.com/maps?q=7422+Ward+Rd,+Millington,+TN&output=embed"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <a
+        href="https://www.google.com/maps?q=7422+Ward+Rd,+Millington,+TN"
+        class="directions-button"
+        target="_blank">
+        Get Directions
+      </a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="schedule.html">Events</a>
+        <a href="menu.html">Menu</a>
+        <a href="book.html">Book Us</a>
+      </div>
+    </div>
+    <p class="footer-note">&copy; 2025 The Family Cup. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>
