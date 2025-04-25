@@ -209,7 +209,10 @@
   fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMRKORpKD6V1z73bVkIvUKShFmnM3lT0XH69tkyUaRzApGKCWazPzvJgEjrld6Bq8321SshiVy0sQ/pub?gid=30031104&single=true&output=csv")
     .then(response => response.text())
     .then(csv => {
-      const rows = csv.trim().split("\n").map(row => row.split(","));
+      const rows = csv.trim().split("\n").map(row => {
+  const pattern = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
+  return [...row.matchAll(pattern)].map(m => m[0].replace(/^"|"$/g, ""));
+});
       const firstEvent = rows[1];
 
       const name = firstEvent[0];
