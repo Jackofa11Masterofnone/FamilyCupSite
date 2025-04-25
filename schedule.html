@@ -237,21 +237,19 @@
       const firstEvent = rows[1];
 
       const name = firstEvent[0];         // Event Name
-      const date = firstEvent[2];         // Next Date
-      const time = firstEvent[3];         // Time
-      const location = firstEvent[4];     // Address
-      // No map link from CSV — we'll build it from location instead!
+      const date = firstEvent[2];          // Next Date
+      const time = firstEvent[3];          // Time
+      const location = firstEvent[4];      // Address
 
       const generatedMapLink = `https://www.google.com/maps?q=${encodeURIComponent(location)}`;
 
-      // Fill the highlighted next event section
       document.getElementById("event-title").textContent = `Next Event: ${name}`;
       document.getElementById("event-time").textContent = `Time: ${time}`;
       document.getElementById("event-address").textContent = location;
       document.getElementById("event-map-link").href = generatedMapLink;
       document.getElementById("event-map-frame").src = generatedMapLink + "&output=embed";
 
-      // Populate the left event list (optional if you want that too)
+      // Event list on the left
       const eventListContainer = document.getElementById("event-list-section");
       for (let i = 1; i < rows.length; i++) {
         const [eventName, , eventDate, eventTime] = rows[i];
@@ -263,7 +261,7 @@
         pName.textContent = eventName;
 
         const h3 = document.createElement("h3");
-        h3.textContent = eventDate; // Don't format, use your nice written format
+        h3.textContent = eventDate;
 
         const pTime = document.createElement("p");
         pTime.textContent = eventTime;
