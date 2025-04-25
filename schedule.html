@@ -86,7 +86,7 @@
       font-size: 0.9rem;
       font-style: italic;
       color: #666;
-      margin top: -5px;
+      margin-top: -5px;
       margin-bottom: 10px;
     }
     #event-address {
@@ -117,6 +117,38 @@
         flex-direction: column;
       }
     }
+    html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-footer {
+  background-color: #f6f5ee;
+  padding: 20px;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.footer-links a {
+  color: #929471;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-note {
+  font-size: 0.8rem;
+  color: #777;
+  margin-top: 10px;
+}
   </style>
 </head>
 <body>
@@ -152,73 +184,42 @@
   </section>
 
   <section class="schedule-wrapper">
-    <div class="event-list-section">
-      <div class="event-list-card">
-        <h3>May 3</h3>
-        <p>Lightfoot Farm Market – Millington, TN</p>
-      </div>
-      <div class="event-list-card">
-        <h3>May 8</h3>
-        <p>Baptist Corporate – Memphis, TN</p>
-      </div>
-      <div class="event-list-card">
-        <h3>May 18</h3>
-        <p>Sea Isle Park – Memphis, TN</p>
-      </div>
-      <div class="event-list-card">
-        <h3>May 25</h3>
-        <p>Cypress Home & Garden Market – Roseville, TN</p>
-      </div>
-      <div class="event-list-card">
-        <h3>May 28</h3>
-        <p>Touch a Truck – Collierville Library</p>
-      </div>
-    </div>
-
-  <div class="highlighted-event">
-  <h2 id="event-title">Next Event: Loading...</h2>
-
-  <p id="event-time" style="font-weight: bold; margin-bottom: 10px;">Loading time...</p>
-
-  <p><strong>Address:</strong> <span id="event-address">Loading address...</span></p>
-
-  <div class="map-preview">
-    <iframe id="event-map-frame"
-      src=""
-      allowfullscreen>
-    </iframe>
+  <div class="event-list-section" id="event-list-section">
+    <!-- JavaScript will auto-fill upcoming events here -->
   </div>
 
-  <a
-    href="#"
-    id="event-map-link"
-    class="directions-button"
-    target="_blank">
-    Get Directions
-  </a>
-</div>
-  <footer class="site-footer">
-    <div class="footer-container">
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="schedule.html">Events</a>
-        <a href="menu.html">Menu</a>
-        <a href="book.html">Book Us</a>
-      </div>
+  <div class="highlighted-event">
+    <h2 id="event-title">Next Event: Loading...</h2>
+    <p id="event-time" style="font-style: italic; margin-bottom: 10px;">Loading time...</p>
+    <p><strong>Address:</strong> <span id="event-address">Loading address...</span></p>
+
+    <div class="map-preview">
+      <iframe id="event-map-frame" src="" allowfullscreen></iframe>
     </div>
-    <p class="footer-note">&copy; 2025 The Family Cup. All rights reserved.</p>
-  </footer>
 
-  <!-- Toggle Menu Script -->
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById("mobile-menu");
-    menu.classList.toggle("show");
-  }
-</script>
+    <a
+      href="#"
+      id="event-map-link"
+      class="directions-button"
+      target="_blank">
+      Get Directions
+    </a>
+  </div>
+</section>
 
-<!-- Schedule Fetch Script -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="schedule.html">Events</a>
+      <a href="menu.html">Menu</a>
+      <a href="book.html">Book Us</a>
+    </div>
+  </div>
+  <p class="footer-note">&copy; 2025 The Family Cup. All rights reserved.</p>
+</footer>
+
 <script>
   fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMRKORpKD6V1z73bVkIvUKShFmnM3lT0XH69tkyUaRzApGKCWazPzvJgEjrld6Bq8321SshiVy0sQ/pub?output=csv")
     .then(response => response.text())
@@ -228,19 +229,11 @@
         return [...row.matchAll(pattern)].map(m => m[0].replace(/^"|"$/g, ""));
       });
 
-      if (rows.length <= 1) {
-        document.getElementById("event-title").textContent = "Next Event: Info unavailable";
-        document.getElementById("event-address").textContent = "Please check back soon.";
-        return;
-      }
-
       const firstEvent = rows[1];
-
-      const name = firstEvent[0];         // Event Name
-      const date = firstEvent[2];          // Next Date
-      const time = firstEvent[3];          // Time
-      const location = firstEvent[4];      // Address
-
+      const name = firstEvent[0];
+      const date = firstEvent[2];
+      const time = firstEvent[3];
+      const location = firstEvent[4];
       const generatedMapLink = `https://www.google.com/maps?q=${encodeURIComponent(location)}`;
 
       document.getElementById("event-title").textContent = `Next Event: ${name}`;
@@ -249,7 +242,6 @@
       document.getElementById("event-map-link").href = generatedMapLink;
       document.getElementById("event-map-frame").src = generatedMapLink + "&output=embed";
 
-      // Event list on the left
       const eventListContainer = document.getElementById("event-list-section");
       for (let i = 1; i < rows.length; i++) {
         const [eventName, , eventDate, eventTime] = rows[i];
@@ -266,9 +258,9 @@
         const pTime = document.createElement("p");
         pTime.textContent = eventTime;
 
-        card.appendChild(pName);
         card.appendChild(h3);
         card.appendChild(pTime);
+        card.appendChild(pName);
         eventListContainer.appendChild(card);
       }
     })
