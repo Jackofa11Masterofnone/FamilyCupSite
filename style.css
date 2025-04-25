@@ -1,3 +1,11 @@
+:root {
+  --cream: #fdfcf6;
+  --green: #929471;
+  --tan: #e1c6a1;
+  --tan-light: #f2dbc0;
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
 body {
   margin: 0;
   font-family: 'Garet', sans-serif;
