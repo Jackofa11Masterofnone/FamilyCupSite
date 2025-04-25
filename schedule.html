@@ -226,6 +226,7 @@
 
       // Populate highlighted Next Event card
       document.getElementById("event-title").textContent = `Next Event: ${name}`;
+      document.getElementById("event-time").textContent = `Time: ${time}`;
       document.getElementById("event-address").textContent = location;
       document.getElementById("event-map-link").href = mapLink;
       document.getElementById("event-map-frame").src = `https://www.google.com/maps?q=${encodeURIComponent(location)}&output=embed`;
