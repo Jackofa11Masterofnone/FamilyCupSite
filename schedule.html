@@ -50,13 +50,13 @@
     }
     .schedule-wrapper {
       display: flex;
-      flex-direction: column;
       flex-wrap: wrap;
-      align-items: center:
+      justify-content: center:
+      gap: 40px;
       max-width: 1200px;
       margin: 40px auto;
       padding: 0 20px;
-      gap: 40px;
+
     }
     .event-list-section {
       max-width: 600px;
@@ -167,6 +167,7 @@
     @media (max-width: 768px) {
       .schedule-wrapper {
         flex-direction: column;
+        align-items: center;
       }
     }
   </style>
