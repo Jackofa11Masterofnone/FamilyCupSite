@@ -244,25 +244,25 @@ fetch("https://opensheet.elk.sh/1nZQGzeUkKexvcXp9poYxBoYHv34x-F00BFsDloPTGJs/Dis
     eventListContainer.innerHTML = ""; // clear old
 
     rows.forEach(event => {
-  if (event['Show/Hide'] && event['Show/Hide'].trim().toLowerCase() === 'show') {
-    const card = document.createElement("div");
-    card.className = "event-list-card";
+      if (event['Show/Hide'] && event['Show/Hide'].trim().toLowerCase() === 'show') {
+        const card = document.createElement("div");
+        card.className = "event-list-card";
 
-    const pName = document.createElement("p");
-    pName.textContent = event['Event Name']; // <- Full event name comes here
+        const pName = document.createElement("p");
+        pName.textContent = event['Event Name']; // <- Full event name comes here
 
-    const h3 = document.createElement("h3");
-    h3.textContent = event['Next Date']; // <- Full date here
+        const h3 = document.createElement("h3");
+        h3.textContent = event['Next Date']; // <- Full date here
 
-    const pTime = document.createElement("p");
-    pTime.textContent = event['Time']; // <- Full time here
+        const pTime = document.createElement("p");
+        pTime.textContent = event['Time']; // <- Full time here
 
-    card.appendChild(pName);
-    card.appendChild(h3);
-    card.appendChild(pTime);
-    eventListContainer.appendChild(card);
-  }
-});
+        card.appendChild(pName);
+        card.appendChild(h3);
+        card.appendChild(pTime);
+         eventListContainer.appendChild(card);
+        }
+    });
 
   })
   .catch(error => {
