@@ -165,21 +165,22 @@
     </div>
 
     <div class="highlighted-event">
-      <h2>Next Event: Lightfoot Farm Market</h2>
-      <p><strong>Address:</strong> 7422 Ward Rd, Millington, TN</p>
-      <div class="map-preview">
-        <iframe
-          src="https://www.google.com/maps?q=7422+Ward+Rd,+Millington,+TN&output=embed"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <a
-        href="https://www.google.com/maps?q=7422+Ward+Rd,+Millington,+TN"
-        class="directions-button"
-        target="_blank">
-        Get Directions
-      </a>
-    </div>
+  <h2 id="event-title">Next Event: Loading...</h2>
+  <p><strong>Address:</strong> <span id="event-address">Loading address...</span></p>
+  <div class="map-preview">
+    <iframe id="event-map-frame"
+      src=""
+      allowfullscreen>
+    </iframe>
+  </div>
+  <a
+    href="#"
+    id="event-map-link"
+    class="directions-button"
+    target="_blank">
+    Get Directions
+  </a>
+</div>
   </section>
 
   <footer class="site-footer">
@@ -201,6 +202,27 @@
       menu.classList.toggle("show");
     }
   </script>
+  fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMRKORpKD6V1z73bVkIvUKShFmnM3lT0XH69tkyUaRzApGKCWazPzvJgEjrld6Bq8321SshiVy0sQ/pub?gid=30031104&single=true&output=csv")
+    .then(response => response.text())
+    .then(csv => {
+      const rows = csv.trim().split("\n").map(row => row.split(","));
+      const [eventName, , eventDate, eventTime, eventLocation, mapLink] = rows[1];
+
+      // Populate dynamic event details
+      document.getElementById("event-title").textContent = `Next Event: ${eventName}`;
+      document.getElementById("event-address").textContent = eventLocation;
+      document.getElementById("event-map-link").href = mapLink;
+
+      // Update the embedded Google Map iframe
+      const encodedLocation = encodeURIComponent(eventLocation);
+      document.getElementById("event-map-frame").src = `https://www.google.com/maps?q=${encodedLocation}&output=embed`;
+    })
+    .catch(error => {
+      console.error("Error fetching next event:", error);
+      document.getElementById("event-title").textContent = "Next Event: Info unavailable";
+      document.getElementById("event-address").textContent = "Please check back soon.";
+    });
+</script>
 
 </body>
 </html>
