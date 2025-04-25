@@ -206,7 +206,11 @@
     .then(response => response.text())
     .then(csv => {
       const rows = csv.trim().split("\n").map(row => row.split(","));
-      const [eventName, , eventDate, eventTime, eventLocation, mapLink] = rows[1];
+      const name = rows[1][0];
+      const date = rows[1][2];
+      const time = rows[1][3];
+      const location = rows[1][4];
+      const mapLink = rows[1][5];
 
       // Populate dynamic event details
       document.getElementById("event-title").textContent = `Next Event: ${eventName}`;
