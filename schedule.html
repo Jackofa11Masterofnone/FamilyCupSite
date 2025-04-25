@@ -223,6 +223,49 @@
       document.getElementById("event-address").textContent = "Please check back soon.";
     });
 </script>
+<script>
+  fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMRKORpKD6V1z73bVkIvUKShFmnM3lT0XH69tkyUaRzApGKCWazPzvJgEjrld6Bq8321SshiVy0sQ/pub?gid=30031104&single=true&output=csv")
+    .then(response => response.text())
+    .then(csv => {
+      const rows = csv.trim().split("\n").map(row => row.split(","));
+      const [name, , date, time, location, mapLink] = rows[1];
 
+      // Update the featured event card
+      document.getElementById("event-title").textContent = `Next Event: ${name}`;
+      document.getElementById("event-address").textContent = location;
+      document.getElementById("event-map-link").href = mapLink;
+      document.getElementById("event-map-frame").src = `https://www.google.com/maps?q=${encodeURIComponent(location)}&output=embed`;
+
+      // Update the event list cards (left section)
+      const eventListContainer = document.getElementById("event-list-section");
+      for (let i = 1; i < rows.length; i++) {
+        const [name, , date, time, , ] = rows[i];
+
+        const card = document.createElement("div");
+        card.className = "event-list-card";
+
+        const pName = document.createElement("p");
+        pName.textContent = name;
+
+        const h3 = document.createElement("h3");
+        h3.textContent = new Date(date).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric"
+        });
+
+        const pTime = document.createElement("p");
+        pTime.textContent = time;
+
+        card.appendChild(pName);
+        card.appendChild(h3);
+        card.appendChild(pTime);
+        eventListContainer.appendChild(card);
+      }
+    })
+    .catch(error => {
+      console.error("Error loading event data:", error);
+    });
+</script>
+  
 </body>
 </html>
