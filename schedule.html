@@ -221,7 +221,7 @@
 </footer>
 
 <script>
-  fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMRKORpKD6V1z73bVkIvUKShFmnM3lT0XH69tkyUaRzApGKCWazPzvJgEjrld6Bq8321SshiVy0sQ/pub?gid=30031104&single=true&output=csv")
+fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMRKORpKD6V1z73bVkIvUKShFmnM3lT0XH69tkyUaRzApGKCWazPzvJgEjrld6Bq8321SshiVy0sQ/pub?output=csv")
     .then(response => response.text())
     .then(csv => {
       const rows = csv.trim().split("\n").map(row => {
