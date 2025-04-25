@@ -220,29 +220,38 @@
 
 <!-- Schedule Fetch Script -->
 <script>
-fetch("https://docs.google.com/spreadsheets/d/e/2PACX-.../pub?output=csv")
+  fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMRKORpKD6V1z73bVkIvUKShFmnM3lT0XH69tkyUaRzApGKCWazPzvJgEjrld6Bq8321SshiVy0sQ/pub?output=csv")
     .then(response => response.text())
     .then(csv => {
       const rows = csv.trim().split("\n").map(row => {
         const pattern = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
         return [...row.matchAll(pattern)].map(m => m[0].replace(/^"|"$/g, ""));
       });
+
+      if (rows.length <= 1) {
+        document.getElementById("event-title").textContent = "Next Event: Info unavailable";
+        document.getElementById("event-address").textContent = "Please check back soon.";
+        return;
+      }
+
       const firstEvent = rows[1];
 
-      const name = firstEvent[0];
-      const date = firstEvent[2];
-      const time = firstEvent[3];
-      const location = firstEvent[4];
-      const mapLink = firstEvent[5];
+      const name = firstEvent[0];         // Event Name
+      const date = firstEvent[2];         // Next Date
+      const time = firstEvent[3];         // Time
+      const location = firstEvent[4];     // Address
+      // No map link from CSV — we'll build it from location instead!
 
-      // Populate highlighted Next Event card
+      const generatedMapLink = `https://www.google.com/maps?q=${encodeURIComponent(location)}`;
+
+      // Fill the highlighted next event section
       document.getElementById("event-title").textContent = `Next Event: ${name}`;
       document.getElementById("event-time").textContent = `Time: ${time}`;
       document.getElementById("event-address").textContent = location;
-      document.getElementById("event-map-link").href = mapLink;
-      document.getElementById("event-map-frame").src = `https://www.google.com/maps?q=${encodeURIComponent(location)}&output=embed`;
+      document.getElementById("event-map-link").href = generatedMapLink;
+      document.getElementById("event-map-frame").src = generatedMapLink + "&output=embed";
 
-      // Populate event cards in the left column
+      // Populate the left event list (optional if you want that too)
       const eventListContainer = document.getElementById("event-list-section");
       for (let i = 1; i < rows.length; i++) {
         const [eventName, , eventDate, eventTime] = rows[i];
@@ -254,8 +263,8 @@ fetch("https://docs.google.com/spreadsheets/d/e/2PACX-.../pub?output=csv")
         pName.textContent = eventName;
 
         const h3 = document.createElement("h3");
-        h3.textContent = eventDate;
-        
+        h3.textContent = eventDate; // Don't format, use your nice written format
+
         const pTime = document.createElement("p");
         pTime.textContent = eventTime;
 
