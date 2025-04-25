@@ -214,6 +214,7 @@
 </footer>
 
 <script>
+<script>
 function toggleMenu() {
   const menu = document.getElementById("mobile-menu");
   menu.classList.toggle("show");
@@ -223,26 +224,31 @@ fetch("https://opensheet.elk.sh/1nZQGzeUkKexvcXp9poYxBoYHv34x-F00BFsDloPTGJs/Dis
   .then(response => response.json())
   .then(rows => {
     console.log("Fetched rows:", rows);
+
+    // Find the first event that says "Show"
     const firstEvent = rows.find(row => row['Show/Hide'] === 'Show');
 
     if (firstEvent) {
-      document.getElementById("event-title").textContent = `Next Event: ${firstEvent['Event Name']}`;  // <-- Pull full Event Name here
+      document.getElementById("event-title").textContent = `Next Event: ${firstEvent['Event Name']}`;
       document.getElementById("event-time").textContent = `Time: ${firstEvent['Time']}`;
-      document.getElementById("event-address').textContent = firstEvent['Address'];
+      document.getElementById("event-address").textContent = firstEvent['Address'];
 
       const mapLink = firstEvent['Map Link'] || `https://www.google.com/maps?q=${encodeURIComponent(firstEvent['Address'])}`;
       document.getElementById("event-map-link").href = mapLink;
       document.getElementById("event-map-frame").src = mapLink + "&output=embed";
     }
 
+    // Now fill all the event cards (left side)
     const eventListContainer = document.getElementById("event-list-section");
+    eventListContainer.innerHTML = ""; // Clear old cards
+
     rows.forEach(event => {
       if (event['Show/Hide'] === 'Show') {
         const card = document.createElement("div");
         card.className = "event-list-card";
 
         const pName = document.createElement("p");
-        pName.textContent = event['Event Name'];  // <-- Pull full Event Name here
+        pName.textContent = event['Event Name'];
 
         const h3 = document.createElement("h3");
         h3.textContent = event['Next Date'];
@@ -256,10 +262,11 @@ fetch("https://opensheet.elk.sh/1nZQGzeUkKexvcXp9poYxBoYHv34x-F00BFsDloPTGJs/Dis
         eventListContainer.appendChild(card);
       }
     });
-
   })
   .catch(error => {
     console.error("Error fetching events:", error);
+    document.getElementById("event-title").textContent = "Next Event: Info unavailable";
+    document.getElementById("event-address").textContent = "Please check back soon.";
   });
 </script>
 
