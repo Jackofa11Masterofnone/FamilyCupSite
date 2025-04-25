@@ -216,13 +216,16 @@
       <a href="menu.html">Menu</a>
       <a href="book.html">Book Us</a>
     </div>
-  </div>
   <p class="footer-note">&copy; 2025 The Family Cup. All rights reserved.</p>
 </footer>
 
 <script>
 fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMRKORpKD6V1z73bVkIvUKShFmnM3lT0XH69tkyUaRzApGKCWazPzvJgEjrld6Bq8321SshiVy0sQ/pub?output=csv")
     .then(response => response.text())
+    .then(response => {
+      console.log(response);
+      return response.text();
+    })
     .then(csv => {
       const rows = csv.trim().split("\n").map(row => {
         const pattern = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
