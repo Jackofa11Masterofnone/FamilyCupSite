@@ -106,6 +106,12 @@
       border: none;
       margin-bottom: 15px;
     }
+    .directions-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
     .directions-button {
       display: inline-block;
       padding: 12px 24px;
@@ -114,12 +120,11 @@
       text-decoration: none;
       border-radius: 4px;
       font-size: 0.95rem;
-      transition: transform 0.2s ease;
     }
-    .directions-button:hover {
-      background-color: #7c875d;
-      transform: scale(1.05);
-    }
+
+.directions-button:hover {
+  background-color: #7c875d;
+}
     .site-footer {
       background-color: #f6f5ee;
       padding: 20px;
@@ -189,14 +194,17 @@
 
   <div class="highlighted-event">
     <h2 id="event-title">Next Event: Loading...</h2>
-    <p id="event-time" style="font-style: italic; margin-bottom: 10px;">Loading time...</p>
+    <p id="event-time">Loading time...</p>
     <p><strong>Address:</strong> <span id="event-address">Loading address...</span></p>
 
     <div class="map-preview">
       <iframe id="event-map-frame" src="" allowfullscreen></iframe>
     </div>
 
-    <a href="#" id="event-map-link" class="directions-button" target="_blank">Get Directions</a>
+    <div class="directions-buttons">
+      <a id="apple-maps-link" class="directions-button" target="_blank">Apple Maps</a>
+      <a id="google-maps-link" class="directions-button" target="_blank">Google Maps</a>
+    </div>
   </div>
 </section>
 
@@ -230,22 +238,27 @@ fetch("https://opensheet.elk.sh/1nZQGzeUkKexvcXp9poYxBoYHv34x-F00BFsDloPTGJs/Dis
     if (nextEvent) {
       document.getElementById("event-title").textContent = `Next Event: ${nextEvent["Event Name"] || "TBD"}`;
 
-      // Update next event's Date and Time combined
       const eventTimeDisplay = `${nextEvent["Date"] || "Date TBD"} | ${nextEvent["Time"] || "Time TBD"}`;
       document.getElementById("event-time").textContent = eventTimeDisplay;
 
       document.getElementById("event-address").textContent = nextEvent["Address"] || "Address TBD";
 
-      const mapLink = nextEvent["Map Link"] || `https://www.google.com/maps?q=${encodeURIComponent(nextEvent["Address"])}`;
-      document.getElementById("event-map-link").href = mapLink;
-      document.getElementById("event-map-frame").src = `${mapLink}&output=embed`;
+      const encodedAddress = encodeURIComponent(nextEvent["Address"]);
+      const appleMapLink = `https://maps.apple.com/?address=${encodedAddress}`;
+      const googleMapLink = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+
+      document.getElementById("apple-maps-link").href = appleMapLink;
+      document.getElementById("google-maps-link").href = googleMapLink;
+
+      // Set Google Maps iframe preview
+      document.getElementById("event-map-frame").src = `https://maps.google.com/maps?q=${encodedAddress}&output=embed`;
     } else {
       document.getElementById("event-title").textContent = "Next Event: Info unavailable";
       document.getElementById("event-time").textContent = "";
       document.getElementById("event-address").textContent = "Please check back soon.";
     }
 
-    // Populate the event list cards
+    // Populate the left-side event list
     const eventListContainer = document.getElementById("event-list-section");
     eventListContainer.innerHTML = "";
 
