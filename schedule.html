@@ -6,19 +6,26 @@
   <title>Where You’ll Find Us | The Family Cup</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    :root {
+      --cream: #fdfcf6;
+      --green: #929471;
+      --tan: #e1c6a1;
+    }  
+
     html, body {
       height: 100%;
       margin: 0;
       display: flex;
       flex-direction: column;
-    }
-    body {
       font-family: 'Garet', sans-serif;
+      background-color: var(--cream);
+      color: #333;
     }
     .schedule-hero {
-      background-color: #f6f5ee;
+      background-color: var(--tan);
       padding: 60px 20px 30px;
       text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     .schedule-hero h1 {
       font-family: 'Hatton', serif;
