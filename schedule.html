@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,12 @@
   <title>Where You’ll Find Us | The Family Cup</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
     body {
       font-family: 'Garet', sans-serif;
     }
@@ -36,6 +41,7 @@
       text-decoration: underline;
     }
     .schedule-wrapper {
+      flex: 1;
       display: flex;
       flex-wrap: wrap;
       max-width: 1200px;
@@ -108,82 +114,75 @@
       text-decoration: none;
       border-radius: 4px;
       font-size: 0.95rem;
+      transition: transform 0.2s ease;
     }
     .directions-button:hover {
       background-color: #7c875d;
+      transform: scale(1.05);
+    }
+    .site-footer {
+      background-color: #f6f5ee;
+      padding: 20px;
+      text-align: center;
+      margin-top: auto;
+    }
+    .footer-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .footer-links a {
+      color: #929471;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .footer-note {
+      font-size: 0.8rem;
+      color: #777;
+      margin-top: 10px;
     }
     @media (max-width: 768px) {
       .schedule-wrapper {
         flex-direction: column;
       }
     }
-    html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.site-footer {
-  background-color: #f6f5ee;
-  padding: 20px;
-  text-align: center;
-  margin-top: auto;
-}
-
-.footer-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.footer-links a {
-  color: #929471;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.footer-note {
-  font-size: 0.8rem;
-  color: #777;
-  margin-top: 10px;
-}
   </style>
 </head>
+
 <body>
 
-  <header class="nav-container">
-    <div class="nav-logo">
-      <h1 class="logo-text">THE FAMILY CUP</h1>
-    </div>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="schedule.html">Events</a>
-      <a href="menu.html">Menu</a>
-      <a href="book.html">Book Us</a>
-      <a href="about.html">About</a>
-    </nav>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-  </header>
-
-  <div id="mobile-menu" class="mobile-menu">
+<header class="nav-container">
+  <div class="nav-logo">
+    <h1 class="logo-text">THE FAMILY CUP</h1>
+  </div>
+  <nav class="nav-links">
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
     <a href="schedule.html">Events</a>
     <a href="menu.html">Menu</a>
     <a href="book.html">Book Us</a>
     <a href="about.html">About</a>
-  </div>
+  </nav>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+</header>
 
-  <section class="schedule-hero">
-    <h1>Where You’ll Find Us Next</h1>
-    <p>We rotate locations throughout the month so you can catch us near you soon.</p>
-    <p class="insta-link">Looking for a surprise pop-up? Follow us on <a href="https://www.instagram.com/thefamilycupcoffee" target="_blank">@thefamilycupcoffee</a>.</p>
-  </section>
+<div id="mobile-menu" class="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="schedule.html">Events</a>
+  <a href="menu.html">Menu</a>
+  <a href="book.html">Book Us</a>
+  <a href="about.html">About</a>
+</div>
 
-  <section class="schedule-wrapper">
+<section class="schedule-hero">
+  <h1>Where You’ll Find Us Next</h1>
+  <p>We rotate locations throughout the month so you can catch us near you soon.</p>
+  <p class="insta-link">Looking for a surprise pop-up? Follow us on <a href="https://www.instagram.com/thefamilycupcoffee" target="_blank">@thefamilycupcoffee</a>.</p>
+</section>
+
+<section class="schedule-wrapper">
   <div class="event-list-section" id="event-list-section">
     <!-- JavaScript will auto-fill upcoming events here -->
   </div>
@@ -197,13 +196,7 @@
       <iframe id="event-map-frame" src="" allowfullscreen></iframe>
     </div>
 
-    <a
-      href="#"
-      id="event-map-link"
-      class="directions-button"
-      target="_blank">
-      Get Directions
-    </a>
+    <a href="#" id="event-map-link" class="directions-button" target="_blank">Get Directions</a>
   </div>
 </section>
 
@@ -216,63 +209,65 @@
       <a href="menu.html">Menu</a>
       <a href="book.html">Book Us</a>
     </div>
+  </div>
   <p class="footer-note">&copy; 2025 The Family Cup. All rights reserved.</p>
 </footer>
 
 <script>
+function toggleMenu() {
+  const menu = document.getElementById("mobile-menu");
+  menu.classList.toggle("show");
+}
+
 fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMRKORpKD6V1z73bVkIvUKShFmnM3lT0XH69tkyUaRzApGKCWazPzvJgEjrld6Bq8321SshiVy0sQ/pub?output=csv")
-    .then(response => response.text())
-    .then(response => {
-      console.log(response);
-      return response.text();
-    })
-    .then(csv => {
-      const rows = csv.trim().split("\n").map(row => {
-        const pattern = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
-        return [...row.matchAll(pattern)].map(m => m[0].replace(/^"|"$/g, ""));
-      });
-
-      const firstEvent = rows[1];
-      const name = firstEvent[0];
-      const date = firstEvent[2];
-      const time = firstEvent[3];
-      const location = firstEvent[4];
-      const generatedMapLink = `https://www.google.com/maps?q=${encodeURIComponent(location)}`;
-
-      document.getElementById("event-title").textContent = `Next Event: ${event name}`;
-      document.getElementById("event-time").textContent = `Time: ${time}`;
-      document.getElementById("event-address").textContent = location;
-      document.getElementById("event-map-link").href = generatedMapLink;
-      document.getElementById("event-map-frame").src = generatedMapLink + "&output=embed";
-
-      const eventListContainer = document.getElementById("event-list-section");
-      for (let i = 1; i < rows.length; i++) {
-        const [eventName, , eventDate, eventTime] = rows[i];
-
-        const card = document.createElement("div");
-        card.className = "event-list-card";
-
-        const pName = document.createElement("p");
-        pName.textContent = eventName;
-
-        const h3 = document.createElement("h3");
-        h3.textContent = eventDate;
-
-        const pTime = document.createElement("p");
-        pTime.textContent = eventTime;
-
-        card.appendChild(h3);
-        card.appendChild(pTime);
-        card.appendChild(pName);
-        eventListContainer.appendChild(card);
-      }
-    })
-    .catch(error => {
-      console.error("Error fetching event data:", error);
-      document.getElementById("event-title").textContent = "Next Event: Info unavailable";
-      document.getElementById("event-address").textContent = "Please check back soon.";
+  .then(response => response.text())
+  .then(csv => {
+    const rows = csv.trim().split("\n").map(row => {
+      const pattern = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
+      return [...row.matchAll(pattern)].map(m => m[0].replace(/^"|"$/g, ""));
     });
+
+    const firstEvent = rows[1];
+    const name = firstEvent[0];
+    const date = firstEvent[2];
+    const time = firstEvent[3];
+    const location = firstEvent[4];
+    const generatedMapLink = `https://www.google.com/maps?q=${encodeURIComponent(location)}`;
+
+    document.getElementById("event-title").textContent = `Next Event: ${name}`;
+    document.getElementById("event-time").textContent = `Time: ${time}`;
+    document.getElementById("event-address").textContent = location;
+    document.getElementById("event-map-link").href = generatedMapLink;
+    document.getElementById("event-map-frame").src = generatedMapLink + "&output=embed";
+
+    const eventListContainer = document.getElementById("event-list-section");
+    for (let i = 1; i < rows.length; i++) {
+      const [eventName, , eventDate, eventTime] = rows[i];
+
+      const card = document.createElement("div");
+      card.className = "event-list-card";
+
+      const pName = document.createElement("p");
+      pName.textContent = eventName;
+
+      const h3 = document.createElement("h3");
+      h3.textContent = eventDate;
+
+      const pTime = document.createElement("p");
+      pTime.textContent = eventTime;
+
+      card.appendChild(pName);
+      card.appendChild(h3);
+      card.appendChild(pTime);
+      eventListContainer.appendChild(card);
+    }
+  })
+  .catch(error => {
+    console.error("Error fetching event data:", error);
+    document.getElementById("event-title").textContent = "Next Event: Info unavailable";
+    document.getElementById("event-address").textContent = "Please check back soon.";
+  });
 </script>
-  
+
 </body>
 </html>
