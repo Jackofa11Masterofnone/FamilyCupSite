@@ -10,6 +10,7 @@
       --cream: #fdfcf6;
       --green: #929471;
       --tan: #e1c6a1;
+      --tan-light: #f2dbc0;
     }  
 
     html, body {
@@ -57,8 +58,9 @@
       gap: 40px;
     }
     .event-list-section {
-      flex: 1;
-      min-width: 300px;
+      max-width: 600px;
+      width:100%;
+      margin: 0 auto;
     }
     .event-list-card {
       background-color: #929471;
@@ -77,12 +79,12 @@
       margin: 5px 0 0;
     }
     .highlighted-event {
-      background-color: var(--tan);
-      border: 1px solid #e1e1e1;
+      background-color: var(--tan-light);
+      border: 10px;
       padding: 20px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       max-width: 600px;
       width: 100%;
       margin: 0 auto;
