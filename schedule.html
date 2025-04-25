@@ -219,53 +219,47 @@ function toggleMenu() {
   menu.classList.toggle("show");
 }
 
-fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMRKORpKD6V1z73bVkIvUKShFmnM3lT0XH69tkyUaRzApGKCWazPzvJgEjrld6Bq8321SshiVy0sQ/pub?output=csv")
-  .then(response => response.text())
-  .then(csv => {
-    const rows = csv.trim().split("\n").map(row => {
-      const pattern = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
-      return [...row.matchAll(pattern)].map(m => m[0].replace(/^"|"$/g, ""));
-    });
+fetch("https://opensheet.elk.sh/1nZQGzeUkKexvcXp9poYxBoYHv34x-F00BFsDloPTGJs/DisplaySheet")
+  .then(response => response.json())
+  .then(rows => {
+    console.log("Fetched rows:", rows);
+    const firstEvent = rows.find(row => row['Show/Hide'] === 'Show');
 
-    const firstEvent = rows[1];
-    const name = firstEvent[0];
-    const date = firstEvent[2];
-    const time = firstEvent[3];
-    const location = firstEvent[4];
-    const generatedMapLink = `https://www.google.com/maps?q=${encodeURIComponent(location)}`;
+    if (firstEvent) {
+      document.getElementById("event-title").textContent = `Next Event: ${firstEvent['Event Name']}`;
+      document.getElementById("event-time").textContent = `Time: ${firstEvent['Time']}`;
+      document.getElementById("event-address').textContent = firstEvent['Address'];
 
-    document.getElementById("event-title").textContent = `Next Event: ${name}`;
-    document.getElementById("event-time").textContent = `Time: ${time}`;
-    document.getElementById("event-address").textContent = location;
-    document.getElementById("event-map-link").href = generatedMapLink;
-    document.getElementById("event-map-frame").src = generatedMapLink + "&output=embed";
+      const mapLink = firstEvent['Map Link'] || `https://www.google.com/maps?q=${encodeURIComponent(firstEvent['Address'])}`;
+      document.getElementById("event-map-link").href = mapLink;
+      document.getElementById("event-map-frame").src = mapLink + "&output=embed";
+    }
 
     const eventListContainer = document.getElementById("event-list-section");
-    for (let i = 1; i < rows.length; i++) {
-      const [eventName, , eventDate, eventTime] = rows[i];
+    rows.forEach(event => {
+      if (event['Show/Hide'] === 'Show') {
+        const card = document.createElement("div");
+        card.className = "event-list-card";
 
-      const card = document.createElement("div");
-      card.className = "event-list-card";
+        const pName = document.createElement("p");
+        pName.textContent = event['Event Name'];
 
-      const pName = document.createElement("p");
-      pName.textContent = eventName;
+        const h3 = document.createElement("h3");
+        h3.textContent = event['Next Date'];
 
-      const h3 = document.createElement("h3");
-      h3.textContent = eventDate;
+        const pTime = document.createElement("p");
+        pTime.textContent = event['Time'];
 
-      const pTime = document.createElement("p");
-      pTime.textContent = eventTime;
+        card.appendChild(pName);
+        card.appendChild(h3);
+        card.appendChild(pTime);
+        eventListContainer.appendChild(card);
+      }
+    });
 
-      card.appendChild(pName);
-      card.appendChild(h3);
-      card.appendChild(pTime);
-      eventListContainer.appendChild(card);
-    }
   })
   .catch(error => {
-    console.error("Error fetching event data:", error);
-    document.getElementById("event-title").textContent = "Next Event: Info unavailable";
-    document.getElementById("event-address").textContent = "Please check back soon.";
+    console.error("Error fetching events:", error);
   });
 </script>
 
