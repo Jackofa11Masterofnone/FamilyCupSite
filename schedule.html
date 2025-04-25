@@ -196,69 +196,53 @@
     <p class="footer-note">&copy; 2025 The Family Cup. All rights reserved.</p>
   </footer>
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("mobile-menu");
-      menu.classList.toggle("show");
-    }
-  </script>
-  fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMRKORpKD6V1z73bVkIvUKShFmnM3lT0XH69tkyUaRzApGKCWazPzvJgEjrld6Bq8321SshiVy0sQ/pub?gid=30031104&single=true&output=csv")
-    .then(response => response.text())
-    .then(csv => {
-      const rows = csv.trim().split("\n").map(row => row.split(","));
-      const name = rows[1][1];
-      const date = rows[1][3];
-      const time = rows[1][4];
-      const location = rows[1][5];
-      const mapLink = rows[1][6];
-
-      // Populate dynamic event details
-      document.getElementById("event-title").textContent = `Next Event: ${eventName}`;
-      document.getElementById("event-address").textContent = eventLocation;
-      document.getElementById("event-map-link").href = mapLink;
-
-      // Update the embedded Google Map iframe
-      const encodedLocation = encodeURIComponent(eventLocation);
-      document.getElementById("event-map-frame").src = `https://www.google.com/maps?q=${encodedLocation}&output=embed`;
-    })
-    .catch(error => {
-      console.error("Error fetching next event:", error);
-      document.getElementById("event-title").textContent = "Next Event: Info unavailable";
-      document.getElementById("event-address").textContent = "Please check back soon.";
-    });
+  <!-- Toggle Menu Script -->
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("mobile-menu");
+    menu.classList.toggle("show");
+  }
 </script>
+
+<!-- Schedule Fetch Script -->
 <script>
   fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMRKORpKD6V1z73bVkIvUKShFmnM3lT0XH69tkyUaRzApGKCWazPzvJgEjrld6Bq8321SshiVy0sQ/pub?gid=30031104&single=true&output=csv")
     .then(response => response.text())
     .then(csv => {
       const rows = csv.trim().split("\n").map(row => row.split(","));
-      const [name, , date, time, location, mapLink] = rows[1];
+      const firstEvent = rows[1];
 
-      // Update the featured event card
+      const name = firstEvent[0];
+      const date = firstEvent[2];
+      const time = firstEvent[3];
+      const location = firstEvent[4];
+      const mapLink = firstEvent[5];
+
+      // Populate highlighted Next Event card
       document.getElementById("event-title").textContent = `Next Event: ${name}`;
       document.getElementById("event-address").textContent = location;
       document.getElementById("event-map-link").href = mapLink;
       document.getElementById("event-map-frame").src = `https://www.google.com/maps?q=${encodeURIComponent(location)}&output=embed`;
 
-      // Update the event list cards (left section)
+      // Populate event cards in the left column
       const eventListContainer = document.getElementById("event-list-section");
       for (let i = 1; i < rows.length; i++) {
-        const [name, , date, time, , ] = rows[i];
+        const [eventName, , eventDate, eventTime] = rows[i];
 
         const card = document.createElement("div");
         card.className = "event-list-card";
 
         const pName = document.createElement("p");
-        pName.textContent = name;
+        pName.textContent = eventName;
 
         const h3 = document.createElement("h3");
-        h3.textContent = new Date(date).toLocaleDateString("en-US", {
+        h3.textContent = new Date(eventDate).toLocaleDateString("en-US", {
           month: "short",
           day: "numeric"
         });
 
         const pTime = document.createElement("p");
-        pTime.textContent = time;
+        pTime.textContent = eventTime;
 
         card.appendChild(pName);
         card.appendChild(h3);
@@ -267,7 +251,9 @@
       }
     })
     .catch(error => {
-      console.error("Error loading event data:", error);
+      console.error("Error fetching event data:", error);
+      document.getElementById("event-title").textContent = "Next Event: Info unavailable";
+      document.getElementById("event-address").textContent = "Please check back soon.";
     });
 </script>
   
