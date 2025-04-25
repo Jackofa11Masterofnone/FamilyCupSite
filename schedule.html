@@ -226,7 +226,7 @@ fetch("https://opensheet.elk.sh/1nZQGzeUkKexvcXp9poYxBoYHv34x-F00BFsDloPTGJs/Dis
     const firstEvent = rows.find(row => row['Show/Hide'] === 'Show');
 
     if (firstEvent) {
-      document.getElementById("event-title").textContent = `Next Event: ${firstEvent['Event Name']}`;
+      document.getElementById("event-title").textContent = `Next Event: ${firstEvent['Event Name']}`;  // <-- Pull full Event Name here
       document.getElementById("event-time").textContent = `Time: ${firstEvent['Time']}`;
       document.getElementById("event-address').textContent = firstEvent['Address'];
 
@@ -242,7 +242,7 @@ fetch("https://opensheet.elk.sh/1nZQGzeUkKexvcXp9poYxBoYHv34x-F00BFsDloPTGJs/Dis
         card.className = "event-list-card";
 
         const pName = document.createElement("p");
-        pName.textContent = event['Event Name'];
+        pName.textContent = event['Event Name'];  // <-- Pull full Event Name here
 
         const h3 = document.createElement("h3");
         h3.textContent = event['Next Date'];
