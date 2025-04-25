@@ -215,6 +215,7 @@
 
 <script>
 <script>
+<script>
 function toggleMenu() {
   const menu = document.getElementById("mobile-menu");
   menu.classList.toggle("show");
@@ -223,38 +224,38 @@ function toggleMenu() {
 fetch("https://opensheet.elk.sh/1nZQGzeUkKexvcXp9poYxBoYHv34x-F00BFsDloPTGJs/DisplaySheet")
   .then(response => response.json())
   .then(rows => {
-    console.log("Fetched rows:", rows);
+    console.log("Fetched rows:", rows); // SHOW what's coming in
 
-    // Find the first event that says "Show"
-    const firstEvent = rows.find(row => row['Show/Hide'] === 'Show');
+    // Find the first event marked as "Show"
+    const firstEvent = rows.find(row => row['Show/Hide'] && row['Show/Hide'].trim().toLowerCase() === 'show');
 
     if (firstEvent) {
-      document.getElementById("event-title").textContent = `Next Event: ${firstEvent['Event Name']}`;
-      document.getElementById("event-time").textContent = `Time: ${firstEvent['Time']}`;
-      document.getElementById("event-address").textContent = firstEvent['Address'];
+      document.getElementById("event-title").textContent = `Next Event: ${firstEvent['Event Name'] || "TBD"}`;
+      document.getElementById("event-time").textContent = `Time: ${firstEvent['Time'] || "TBD"}`;
+      document.getElementById("event-address").textContent = firstEvent['Address'] || "Address TBD";
 
       const mapLink = firstEvent['Map Link'] || `https://www.google.com/maps?q=${encodeURIComponent(firstEvent['Address'])}`;
       document.getElementById("event-map-link").href = mapLink;
       document.getElementById("event-map-frame").src = mapLink + "&output=embed";
     }
 
-    // Now fill all the event cards (left side)
+    // Now list all events
     const eventListContainer = document.getElementById("event-list-section");
-    eventListContainer.innerHTML = ""; // Clear old cards
+    eventListContainer.innerHTML = ""; // clear old
 
     rows.forEach(event => {
-      if (event['Show/Hide'] === 'Show') {
+      if (event['Show/Hide'] && event['Show/Hide'].trim().toLowerCase() === 'show') {
         const card = document.createElement("div");
         card.className = "event-list-card";
 
         const pName = document.createElement("p");
-        pName.textContent = event['Event Name'];
+        pName.textContent = event['Event Name'] || "Unnamed Event";
 
         const h3 = document.createElement("h3");
-        h3.textContent = event['Next Date'];
+        h3.textContent = event['Next Date'] || "Date TBD";
 
         const pTime = document.createElement("p");
-        pTime.textContent = event['Time'];
+        pTime.textContent = event['Time'] || "Time TBD";
 
         card.appendChild(pName);
         card.appendChild(h3);
@@ -262,6 +263,7 @@ fetch("https://opensheet.elk.sh/1nZQGzeUkKexvcXp9poYxBoYHv34x-F00BFsDloPTGJs/Dis
         eventListContainer.appendChild(card);
       }
     });
+
   })
   .catch(error => {
     console.error("Error fetching events:", error);
