@@ -77,53 +77,67 @@
     }
 
     .shop-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
+      display: flex;
+      flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 2rem;
+}
 
-    .shop-card {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
+.shop-card {
+  background: #fff;
+  width: 220px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  text-align: center;
+}
 
-    .shop-card img {
-      max-width: 100%;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
+.shop-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
 
-    .shop-card h3 {
-      font-size: 1.1rem;
-      color: var(--green);
-      margin-bottom: 5px;
-    }
+.shop-card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #eee;
+}
 
-    .shop-card p {
-      font-size: 0.95rem;
-      margin: 5px 0;
-    }
+.shop-card h3 {
+  font-size: 1rem;
+  margin: 12px 0 4px;
+  color: #333;
+}
 
-    .shop-card span {
-      font-weight: bold;
-      margin-top: 10px;
-      display: block;
-    }
+.shop-card p {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0 0 8px;
+  padding: 0 12px;
+}
 
-    .buy-button {
-      background-color: var(--tan);
-      color: var(--green);
-      text-decoration: none;
-      text-align: center;
-      display: inline-block;
-      padding: 10px;
-      border-radius: 6px;
-      margin-top: 10px;
-      font-weight: bold;
-    }
+.shop-card span {
+  font-weight: bold;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.buy-button {
+  display: inline-block;
+  margin: 12px 0 16px;
+  padding: 8px 16px;
+  background-color: #7a7464;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.buy-button:hover {
+  background-color: #5c574c;
+}
 
     .shop-note {
       text-align: center;
