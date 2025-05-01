@@ -20,6 +20,108 @@
       margin-bottom: 20px;
       border-radius: 8px;
     }
+    <style>
+:root {
+  --green: #929471;
+  --cream: #fdfcf6;
+  --tan: #d4c1a1;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--cream);
+  color: #333;
+}
+
+header, footer {
+  background-color: var(--green);
+  color: var(--cream);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.nav-links a {
+  color: var(--cream);
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.hamburger {
+  display: none;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+.page-section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+.footer-links a {
+  color: var(--cream);
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer-note {
+  margin-top: 10px;
+}
+
+/* About Page Card Styles */
+.about-card {
+  background: var(--cream);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  margin: 40px 0;
+}
+
+.about-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-image {
+  width: 50%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+  text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .about-image {
+    width: 80%;
+  }
+}
+</style>
   </style>
 </head>
 <body>
