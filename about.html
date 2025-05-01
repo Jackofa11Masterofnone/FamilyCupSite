@@ -85,6 +85,20 @@ header, footer {
 .about-text {
   text-align: center;
 }
+
+  .video-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px; /* optional, matches card corners */
+}
+  
 .mission-buttons {
   display: flex;
   gap: 10px;
@@ -181,7 +195,8 @@ footer {
 
 <section class="page-section">
   <div class="about-card">
-    <video class="about-video" autoplay muted loop playsinline>
+    <div class="video-wrapper">
+      <video autoplay muted loop playsinline>
       <source src="Video.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
