@@ -5,22 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About Us | The Family Cup</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    .page-section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .page-section img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-      border-radius: 8px;
-    }
-    <style>
+<style>
 :root {
   --green: #929471;
   --cream: #fdfcf6;
@@ -66,9 +51,39 @@ header, footer {
 }
 
 .page-section {
-  padding: 60px 20px;
+  padding: 40px 20px;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+/* About Page Card Styles */
+.about-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  margin: 40px auto;
+  max-width: 600px; /* limits card width */
+  text-align: center;
+}
+
+.about-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 300px; /* limits image size inside card */
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+  text-align: center;
 }
 
 footer {
@@ -87,42 +102,18 @@ footer {
   margin-top: 10px;
 }
 
-/* About Page Card Styles */
-.about-card {
-  background: var(--cream);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-  margin: 40px 0;
-}
-
-.about-card-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.about-image {
-  width: 50%;
-  max-width: 300px;
-  height: auto;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.about-text {
-  text-align: center;
-}
-
 /* Responsive Adjustments */
 @media (max-width: 600px) {
+  .about-card {
+    max-width: 90%;
+    padding: 15px;
+  }
+
   .about-image {
-    width: 80%;
+    max-width: 90%;
   }
 }
 </style>
-  </style>
 </head>
 <body>
 
