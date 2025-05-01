@@ -77,40 +77,51 @@
     }
 
     .shop-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
     }
 
     .shop-card {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      background: var(--cream); /* soft background from your palette */
+      width: 210px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .shop-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
     }
 
     .shop-card img {
-      max-width: 100%;
-      border-radius: 6px;
-      margin-bottom: 10px;
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .shop-card h3 {
-      font-size: 1.1rem;
-      color: var(--green);
-      margin-bottom: 5px;
+      font-size: 1rem;
+      margin: 12px 0 4px;
+      color: var(--green); /* headline uses your green */
     }
 
     .shop-card p {
-      font-size: 0.95rem;
-      margin: 5px 0;
+      font-size: 0.85rem;
+      color: #555; /* keep good contrast for readability */
+      margin: 0 0 10px;
+      padding: 0 12px;
     }
 
     .shop-card span {
       font-weight: bold;
-      margin-top: 10px;
-      display: block;
+      color: var(--tan); /* price uses your tan for a warm touch */
+      font-size: 0.95rem;
     }
 
     .buy-button {
