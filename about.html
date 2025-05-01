@@ -71,6 +71,7 @@ header, footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .about-image {
@@ -91,14 +92,14 @@ header, footer {
   max-width: 100%;
   overflow: hidden;
   display: flex;
-  justify-center: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 .video-wrapper video {
   width: 100%;
   max-width: 500px;
   height: auto;
-  display: block;
   border-radius: 8px; /* optional, matches card corners */
 }
   
@@ -202,10 +203,13 @@ footer {
   <div class="about-card">
     <div class="video-wrapper">
       <video autoplay muted loop playsinline>
-      <source src="Video.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+        <source src="Video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    <div>
+    
     <h2>Our Coffee</h2>
+    
     <p>All of our beans are organically grown, ethically sourced, and roasted by <strong>Dr. Beans Coffee Roasters</strong>. They’re deeply committed to sustainable relationships with farmers and small-batch roasting that brings out the full richness of each bean. It’s coffee we proudly serve to our own family—and to yours.</p>
     <div class="coffee-button">
       <a href="https://www.drbeans.com" target="_blank" rel="noopener noreferrer" class="button-link">
