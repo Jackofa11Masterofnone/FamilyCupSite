@@ -77,67 +77,53 @@
     }
 
     .shop-grid {
-      display: flex;
-      flex-wrap: wrap;
-  gap: 24px;
-  justify-content: center;
-  margin-top: 2rem;
-}
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
 
-.shop-card {
-  background: #fff;
-  width: 220px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  overflow: hidden;
-  text-align: center;
-}
+    .shop-card {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
 
-.shop-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
+    .shop-card img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
 
-.shop-card img {
-  width: 100%;
-  height: auto;
-  border-bottom: 1px solid #eee;
-}
+    .shop-card h3 {
+      font-size: 1.1rem;
+      color: var(--green);
+      margin-bottom: 5px;
+    }
 
-.shop-card h3 {
-  font-size: 1rem;
-  margin: 12px 0 4px;
-  color: #333;
-}
+    .shop-card p {
+      font-size: 0.95rem;
+      margin: 5px 0;
+    }
 
-.shop-card p {
-  font-size: 0.85rem;
-  color: #666;
-  margin: 0 0 8px;
-  padding: 0 12px;
-}
+    .shop-card span {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
 
-.shop-card span {
-  font-weight: bold;
-  color: #444;
-  font-size: 0.95rem;
-}
-
-.buy-button {
-  display: inline-block;
-  margin: 12px 0 16px;
-  padding: 8px 16px;
-  background-color: #7a7464;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 0.85rem;
-}
-
-.buy-button:hover {
-  background-color: #5c574c;
-}
+    .buy-button {
+      background-color: var(--tan);
+      color: var(--green);
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
 
     .shop-note {
       text-align: center;
@@ -183,21 +169,6 @@
     </section>
 
     <section class="shop-section">
-      <h2>Shop All Items</h2>
-      <div class="shop-embed">
-        <iframe src="https://square.site/shop/embed/YOUR-LINK-HERE"
-              width="100%"
-              height="1000"
-              frameborder="0"
-              style="border: none;"></iframe>
-      </div>
-
-      <p style="font-size: 0.9rem; color: #7a7464; margin-top: 1rem; text-align: center;">
-        *Heads up: Items in your cart aren’t held until checkout is complete.
-      </p>
-    </section>
-
-    <section class="shop-section">
       <h2>Specialty Coffee Beans</h2>
       <div class="shop-grid">
         <div class="shop-card">
@@ -205,14 +176,14 @@
           <h3>First Light Coffee – 12oz Bag</h3>
           <p>Each purchase supports Isaiah 117 House. Organic. Ethically sourced.</p>
           <span>$21.50</span>
-          <a href="https://square.link/u/PjCDFwRb" class="buy-button">Buy Now</a>
+          <a href="#" class="buy-button">Buy Now</a>
         </div>
         <div class="shop-card">
           <img src="Firstlightsample.png" alt="First Light Coffee Sample">
           <h3>First Light Coffee – 2.5oz Sample Bag</h3>
           <p>Perfect for gifting or trying. Benefits Isaiah 117 House.</p>
           <span>$4.25</span>
-          <a href="https://square.link/u/xgfyfQRC" class="buy-button">Buy Now</a>
+          <a href="#" class="buy-button">Buy Now</a>
         </div>
       </div>
     </section>
@@ -225,7 +196,7 @@
           <h3>Salted Honey</h3>
           <p>Made with local honey and organic raw sugar. 12oz bottle.</p>
           <span>$16.95</span>
-          <a href="https://square.link/u/HBa2824J" class="buy-button">Buy Now</a>
+          <a href="#" class="buy-button">Buy Now</a>
         </div>
         <div class="shop-card">
           <img src="VanillaSyrup.PNG" alt="Vanilla Bean Syrup">
@@ -245,27 +216,27 @@
           <h3>Family Cup Trucker Hat</h3>
           <p>Available in black or tan. Adjustable fit.</p>
           <span>$29.95</span>
-          <a href="https://square.link/u/i52amEkl" class="buy-button">Buy Now</a>
+          <a href="#" class="buy-button">Buy Now</a>
         </div>
         <div class="shop-card">
           <img src="Chaoshat.JPG" alt="Chaos Coordinator Hat">
           <h3>Chaos Coordinator</h3>
           <p>Perfect for busy mornings. One size fits most.</p>
           <span>$29.95</span>
-          <a href="https://square.link/u/paNX9crU?src=embed" class="buy-button" target="_blank">Buy Now</a>
+          <a href="#" class="buy-button">Buy Now</a>
         </div>
         <div class="shop-card">
           <img src="Daddy hat.JPG" alt="Coffee Daddy Hat">
           <h3>Coffee Daddy</h3>
           <p>Bold, just like your brew. Classic fit cap.</p>
           <span>$29.95</span>
-          <a href="https://square.link/u/w33fKNg9" class="buy-button">Buy Now</a>
+          <a href="#" class="buy-button">Buy Now</a>
         </div>
         <div class="shop-card">
           <img src="Tanfamshirt.JPG" alt="Shirt Merch">
           <h3>Shirt Merch</h3>
           <p>Click below to browse our Bonfire shirt collection.</p>
-          <a href="https://www.bonfire.com/store/the-family-cup/?utm_source=copy_link&utm_medium=store_page_share&utm_campaign=the-family-cup&utm_content=default" class="buy-button">Buy Now</a>
+          <a href="#" class="buy-button">Buy Now</a>
         </div>
       </div>
     </section>
