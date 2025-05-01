@@ -85,7 +85,32 @@ header, footer {
 .about-text {
   text-align: center;
 }
+.mission-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
 
+.button-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--green); /* or pick your button color */
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.button-link:hover {
+  background-color: #7a7c5e; /* slightly darker green on hover */
+}
+  
+/* Mobile-friendly tweak */
+@media (max-width: 600px) {
+  .mission-buttons {
+    flex-direction: column;
+  }
+}
 footer {
   text-align: center;
   padding: 20px;
@@ -146,7 +171,11 @@ footer {
     <img src="IMG_3609.jpeg" alt="Our Family Story" class="about-image" />
     <h2>Our Story</h2>
     <p>The Family Cup began as a dream shared around the kitchen table. Years ago, Rob and his grandfather would sit together over a cup of hot chocolate and coffee in a Memphis bookstore, planting the seed of a dream to one day create a space where families could gather and connect. That dream became a family mission—something we put on paper, talked about over dinner, and continued shaping through every chapter of life. Today, The Family Cup is a family-run coffee trailer built on kindness, connection, and purpose.</p>
-    <p><a href="#our-why">Read more about our why...</a></p>
+    <div class="why-button">
+      <a href="#our-why" class="button-link">
+        Read More About Our Why
+      </a>
+    </div>
   </div>
 </section>
 
@@ -158,6 +187,11 @@ footer {
     </video>
     <h2>Our Coffee</h2>
     <p>All of our beans are organically grown, ethically sourced, and roasted by <strong>Dr. Beans Coffee Roasters</strong>. They’re deeply committed to sustainable relationships with farmers and small-batch roasting that brings out the full richness of each bean. It’s coffee we proudly serve to our own family—and to yours.</p>
+    <div class="coffee-button">
+      <a href="https://www.drbeans.com" target="_blank" rel="noopener noreferrer" class="button-link">
+        Visit Dr. Beans Coffee Roasters
+      </a>
+    </div>
   </div>
 </section>
 
@@ -174,6 +208,14 @@ footer {
     <img src="Untitled design.png" alt="First Light Mission" class="about-image" />
     <h2>First Light Mission</h2>
     <p><strong>First Light</strong> is our signature light roast coffee created in collaboration with Dr. Beans Coffee Roasters. Every bag helps shine hope into dark moments—proceeds directly support Isaiah 117 House and the children they care for. It’s more than a coffee; it’s a cup with purpose.</p>
+    <div class="mission-buttons">
+      <a href="https://www.isaiah117house.com" target="_blank" rel="noopener noreferrer" class="button-link">
+        Visit Isaiah 117 House
+      </a>
+      <a href="https://fostervillagememphis.org" target="_blank" rel="noopener noreferrer" class="button-link">
+        Visit Foster Village Memphis
+      </a>
+    </div>
   </div>
 </section>
 
